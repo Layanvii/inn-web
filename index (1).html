@@ -1,0 +1,1153 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>نادي الابتكار وريادة الأعمال</title>
+<style>
+  @font-face{
+    font-family:'fontThmanyah';
+    src:url('Fonts/thmanyah%20typeface/thmanyahsans/woff2/thmanyahsans-Regular.woff2') format('woff2');
+    font-display:swap;
+    font-weight:400;
+    font-style:normal;
+  }
+  @font-face{
+    font-family:'fontThmanyah';
+    src:url('Fonts/thmanyah%20typeface/thmanyahsans/woff2/thmanyahsans-Bold.woff2') format('woff2');
+    font-display:swap;
+    font-weight:700;
+    font-style:normal;
+  }
+  @font-face{
+    font-family:'fontThmanyah';
+    src:url('Fonts/thmanyah%20typeface/thmanyahsans/woff2/thmanyahsans-Light.woff2') format('woff2');
+    font-display:swap;
+    font-weight:300;
+    font-style:normal;
+  }
+  @font-face{
+    font-family:'fontThmanyahDisplay';
+    src:url('Fonts/thmanyah%20typeface/thmanyahserifdisplay/woff2/thmanyahserifdisplay-Regular.woff2') format('woff2');
+    font-display:swap;
+    font-weight:400;
+    font-style:normal;
+  }
+  :root{
+    --font-444:"fontThmanyah", "fontThmanyah Fallback";
+    --font-display:"fontThmanyahDisplay", "fontThmanyahDisplay Fallback";
+    --cream:#ffffff;
+    --cream-2:#f5f5f5;
+    --paper:#ffffff;
+    --ink:#2c3e50;
+    --ink-soft:#3C7974;
+    --teal-900:#3C7974;
+    --teal-700:#5ba89a;
+    --teal-600:#6AC0BD;
+    --mint-400:#6AC0BD;
+    --mint-300:#a8e6e3;
+    --mint-100:#e8f8f7;
+    --coral:#FF8B5C;
+    --coral-dark:#E86B39;
+    --shadow: 0 20px 45px -20px rgba(60,121,116,0.35);
+    --radius-lg: 32px;
+    --radius-md: 22px;
+  }
+
+  *{box-sizing:border-box; margin:0; padding:0;}
+  *, ::before, ::after,
+  a, body, button, div, h1, h2, h3, h4, h5, h6,
+  html, input, p, span, textarea{
+    font-family:var(--font-444) !important;
+  }
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--cream);
+    color:var(--ink);
+    overflow-x:hidden;
+    position:relative;
+  }
+  h1,h2,h3,h4,h5,h6, .display,
+  .font-display, .font-display *{
+    font-family:var(--font-display) !important;
+    color:var(--teal-900);
+  }
+  /* تفعيل الكشيدة المائلة والأحرف المرسلة في العناوين فقط */
+  h1, h2, h3, .hero h1{
+    font-family:'fontThmanyahDisplay', serif !important;
+    font-weight:700;
+    font-feature-settings:"salt" on, "ss01" on;
+    text-rendering:optimizeLegibility;
+  }
+  /* نصوص الفقرات بدون إرسال أو مد */
+  p, span, li, a{
+    font-family:'fontThmanyah', sans-serif !important;
+    font-weight:400;
+    font-feature-settings:normal;
+  }
+  img{max-width:100%; display:block;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+
+  ::selection{ background:var(--mint-300); color:var(--teal-900); }
+
+  /* ---------- utility ---------- */
+  .wrap{ width:min(1180px, 92%); margin-inline:auto; }
+  .eyebrow{
+    display:inline-flex; align-items:center; gap:10px;
+    font-size:0.85rem; font-weight:700; color:var(--teal-700);
+    background:var(--mint-100); border:1px solid var(--mint-300);
+    padding:7px 18px; border-radius:100px; letter-spacing:.3px;
+  }
+  section{ position:relative; padding:110px 0; }
+  .section-head{ max-width:640px; margin-bottom:56px; }
+  .section-head h2{ font-size:clamp(1.9rem, 3.2vw, 2.7rem); margin-top:16px; line-height:1.3;}
+  .section-head p{ margin-top:16px; color:var(--ink-soft); font-size:1.05rem; line-height:2; }
+  .center{ text-align:center; margin-inline:auto; }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:10px;
+    padding:15px 30px; border-radius:100px; font-weight:700; font-size:0.98rem;
+    transition: transform .35s cubic-bezier(.2,.8,.2,1), box-shadow .35s;
+    cursor:pointer; border:none;
+  }
+  .btn-primary{
+    background:var(--teal-900); color:var(--cream);
+    box-shadow: 0 14px 30px -10px rgba(60,121,116,.55);
+    animation: pulse-ring 2.6s ease-out infinite;
+  }
+  .btn-primary:hover{ transform:translateY(-4px) scale(1.04); box-shadow:0 20px 36px -12px rgba(60,121,116,.6); }
+  .btn-ghost{
+    background:transparent; color:var(--teal-900); border:1.6px solid var(--teal-900);
+  }
+  .btn-ghost:hover{ background:var(--teal-900); color:var(--cream); }
+
+  /* ---------- pinwheel signature mark ---------- */
+  .pinwheel{ transform-origin:50% 50%; }
+  .pinwheel .blade{ fill:var(--teal-700); }
+  .pinwheel .dot{ fill:var(--mint-400); }
+  .pinwheel.spin{ animation: spin 26s linear infinite; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  /* ---------- floating decorative blobs ---------- */
+  .blob{
+    position:absolute; border-radius:50%; filter:blur(2px); z-index:0;
+    background:radial-gradient(circle at 30% 30%, var(--mint-400), transparent 70%);
+    opacity:.55; animation: float 9s ease-in-out infinite;
+  }
+  @keyframes float{
+    0%,100%{ transform:translateY(0) translateX(0); }
+    50%{ transform:translateY(-22px) translateX(10px); }
+  }
+
+  /* ---------- floating emojis ---------- */
+  .emoji-float{
+    position:absolute; line-height:1; z-index:1; user-select:none;
+    animation: emoji-bob 5s ease-in-out infinite;
+    filter: drop-shadow(0 8px 14px rgba(60,121,116,.18));
+  }
+  .emoji-float svg{ display:block; }
+  .icon-inline{ display:inline-block; vertical-align:-4px; margin-inline-start:2px; }
+  @keyframes emoji-bob{
+    0%,100%{ transform:translateY(0) rotate(-6deg); }
+    50%{ transform:translateY(-18px) rotate(8deg); }
+  }
+  .emoji-spin{ animation: emoji-bob 5s ease-in-out infinite, emoji-spin-rot 7s linear infinite; }
+  @keyframes emoji-spin-rot{ to{ transform:rotate(360deg); } }
+
+  @keyframes pop-bounce{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.14) rotate(-4deg); }
+  }
+  @keyframes wiggle{
+    0%,100%{ transform:rotate(0deg); }
+    25%{ transform:rotate(-8deg); }
+    75%{ transform:rotate(8deg); }
+  }
+  @keyframes pulse-ring{
+    0%{ box-shadow:0 0 0 0 rgba(60,121,116,.55); }
+    70%{ box-shadow:0 0 0 14px rgba(60,121,116,0); }
+    100%{ box-shadow:0 0 0 0 rgba(60,121,116,0); }
+  }
+  @keyframes shine-sweep{
+    0%{ background-position:-200% 0; }
+    100%{ background-position:200% 0; }
+  }
+
+  /* ---------- NAV ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:blur(14px);
+    background:rgba(255,255,255,.95);
+    border-bottom:1px solid rgba(60,121,116,.08);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 0;
+  }
+  .brand{ display:flex; align-items:center; gap:12px; }
+  .brand .logo-box{
+    width:46px; height:46px; border-radius:14px; background:var(--paper);
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 6px 16px -6px rgba(60,121,116,.35);
+    overflow:hidden;
+  }
+  .brand .logo-box img{ width:130%; height:130%; object-fit:contain; }
+  .brand-name{ font-family:var(--font-display) !important; font-weight:400; font-size:1.02rem; line-height:1.4; color:var(--teal-900); }
+  .brand-name span{ display:block; font-family:var(--font-444) !important; font-weight:400; font-size:.7rem; color:var(--mint-400); letter-spacing:.3px; margin-top:4px;}
+
+  nav.links{ display:flex; align-items:center; gap:30px; }
+  nav.links a{
+    font-family:'fontThmanyah', sans-serif !important;
+    font-size:.92rem; font-weight:300; color:var(--ink-soft);
+    position:relative; padding:4px 0; transition:color .25s;
+  }
+  nav.links a::after{
+    content:''; position:absolute; right:0; bottom:-4px; width:0; height:2px;
+    background:var(--teal-600); transition:width .3s;
+  }
+  nav.links a:hover{ color:var(--teal-900); }
+  nav.links a:hover::after{ width:100%; }
+  .nav-cta{ display:flex; align-items:center; gap:14px; }
+  .burger{ display:none; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    padding:90px 0 60px;
+    position:relative; overflow:hidden;
+  }
+  .hero .wrap{ position:relative; z-index:2; display:flex; flex-direction:column; align-items:center; text-align:center; gap:26px;}
+  .hero-mark{ position:relative; width:190px; height:190px; margin-bottom:6px; }
+  .hero-mark img{ width:100%; height:100%; object-fit:contain; }
+  .hero .eyebrow{ margin-bottom:0; }
+  .hero h1{
+    font-size:clamp(2.4rem, 5.4vw, 4.2rem); line-height:1.18; font-weight:700;
+    color:var(--teal-900);
+  }
+  .hero p.lead{
+    max-width:600px; color:var(--ink-soft); font-size:1.12rem; line-height:2;
+  }
+  .hero .lead-word{
+    display:inline-block;
+    opacity:0;
+    transform:translateY(10px);
+  }
+  .hero .lead.reveal.in .lead-word{
+    animation:lead-word-in .5s ease-out forwards;
+    animation-delay:var(--word-delay);
+  }
+  @keyframes lead-word-in{
+    to{ opacity:1; transform:translateY(0); }
+  }
+  .hero-actions{ display:flex; gap:16px; margin-top:8px; flex-wrap:wrap; justify-content:center;}
+
+  .scribble-dash{
+    position:absolute; width:64px; height:14px; border-radius:20px; background:var(--teal-600);
+  }
+
+  /* ---------- ABOUT ---------- */
+  .about{ background:var(--paper); border-radius:48px; margin:0 auto; width:min(1180px,94%); border:1px solid rgba(60,121,116,.08); box-shadow:0 -10px 24px -18px rgba(60,121,116,.32), var(--shadow); }
+  .about-grid{
+    display:grid; grid-template-columns: 1fr 1.05fr; gap:64px; align-items:center;
+  }
+  .about-art{
+    position:relative; aspect-ratio:1/1; border-radius:var(--radius-lg);
+    background: linear-gradient(155deg, var(--mint-100), var(--cream-2));
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden; padding:20px;
+  }
+  .about-art img{ width:70%; height:auto; object-fit:contain; transition: transform 0.4s ease, filter 0.4s ease; filter: drop-shadow(0 10px 20px rgba(60,121,116,0.15)); margin:0 auto; }
+  .about-art:hover img{ transform: scale(1.05); filter: drop-shadow(0 15px 30px rgba(60,121,116,0.25)); }
+  .about-copy p{ color:var(--ink-soft); line-height:2.1; font-size:1.05rem; margin-top:18px;}
+  .about-copy .eyebrow{ margin-bottom:10px; }
+
+  /* ---------- VVG cards (vision/values/goals) ---------- */
+  .vvg-grid{ display:grid; grid-template-columns:repeat(2,1fr); gap:26px; }
+  .vvg-card .icon-wrap svg.brand-icon{ display:block; }
+  .values-pills{ display:flex; flex-wrap:wrap; gap:10px; margin-top:6px; }
+  .values-pills .pill{
+    display:inline-flex; align-items:center; font-size:.9rem; font-weight:700;
+    color:var(--teal-700); background:var(--mint-100); border:1px solid var(--mint-300);
+    padding:8px 18px; border-radius:100px; transition:transform .3s, background .3s;
+  }
+  .values-pills .pill:hover{ transform:translateY(-4px) rotate(-2deg); background:var(--mint-300); }
+  .vvg-card{
+    background:var(--paper); border-radius:var(--radius-md); padding:38px 30px;
+    box-shadow: var(--shadow); position:relative; overflow:hidden;
+    transition: transform .4s cubic-bezier(.2,.8,.2,1);
+    border:1px solid rgba(60,121,116,.08);
+  }
+  .vvg-card:hover{ transform:translateY(-10px); border-color:var(--teal-600); }
+  .vvg-card .icon-wrap{
+    width:58px; height:58px; border-radius:16px; display:flex; align-items:center; justify-content:center;
+    background:var(--mint-100); margin-bottom:22px;
+  }
+  .vvg-card h3{ font-size:1.25rem; margin-bottom:12px; }
+  .vvg-card p{ color:var(--ink-soft); line-height:1.95; font-size:.97rem; }
+  .vvg-card .num{
+    position:absolute; left:20px; top:14px; font-family:var(--font-display) !important; font-weight:400;
+    font-size:3.4rem; color:#c5ddda; z-index:0;
+  }
+
+  .goals-list{ margin-top:14px; display:flex; flex-direction:column; gap:12px; }
+  .goals-list li{ display:flex; gap:10px; align-items:flex-start; color:var(--ink-soft); font-size:.95rem; line-height:1.9;}
+  .goals-list svg{ flex:0 0 auto; margin-top:4px; }
+
+  /* ---------- ACHIEVEMENTS ---------- */
+  .achieve{ background:var(--teal-900); color:var(--cream); border-radius:48px; width:min(1180px,94%); margin-inline:auto; position:relative; overflow:hidden;}
+  .achieve .section-head h2, .achieve .section-head p{ color:var(--cream); }
+  .achieve .section-head p{ color:var(--mint-300); }
+  .achieve-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .achieve-card{
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.12);
+    border-radius:22px; padding:30px 24px; backdrop-filter:blur(6px);
+    transition:transform .4s;
+  }
+  .achieve-card:hover{ transform:translateY(-8px); background:rgba(255,255,255,.1); }
+  .achieve-card b{ font-family:var(--font-display) !important; font-size:2.4rem; display:block; color:var(--mint-300); }
+  .achieve-card span{ font-size:.9rem; color:rgba(255,255,255,.78); }
+
+  .timeline{ margin-top:60px; display:flex; flex-direction:column; gap:0; border-right:2px dashed rgba(255,255,255,.25); padding-right:28px; }
+  .timeline-item{ position:relative; padding-bottom:34px; }
+  .timeline-item:last-child{ padding-bottom:0; }
+  .timeline-item::before{
+    content:''; position:absolute; right:-34px; top:4px; width:12px; height:12px; border-radius:50%;
+    background:var(--mint-400); box-shadow:0 0 0 5px rgba(106,192,189,.2);
+  }
+  .timeline-item b{ font-family:var(--font-display) !important; color:var(--mint-300); font-size:.95rem; display:block; margin-bottom:6px;}
+  .timeline-item p{ color:rgba(255,255,255,.82); font-size:.95rem; line-height:1.85; max-width:600px; margin-bottom:8px;}
+
+  /* ---------- COMMITTEES ---------- */
+  .committees-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px;
+  }
+  @media (max-width: 1024px){
+    .committees-grid{ grid-template-columns:repeat(2,1fr); }
+  }
+  @media (max-width: 600px){
+    .committees-grid{ grid-template-columns:1fr; }
+  }
+  .committee-card{
+    background:var(--paper); border-radius:var(--radius-md); position:relative;
+    border:1px solid rgba(60,121,116,.08);
+    box-shadow:var(--shadow);
+    perspective: 1000px;
+    height:280px;
+    cursor:pointer;
+    transition:transform .35s ease, box-shadow .35s ease, border-color .35s ease;
+  }
+  .committee-card-inner{
+    position:relative; width:100%; height:100%;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+  }
+  .committee-card.flipped .committee-card-inner{
+    transform: rotateY(180deg);
+  }
+  .committee-card-front, .committee-card-back{
+    position:absolute; width:100%; height:100%;
+    backface-visibility: hidden;
+    border-radius:var(--radius-md);
+    padding:32px 28px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+  }
+  .committee-card-front{
+    background:var(--paper);
+  }
+  .committee-card-back{
+    background:var(--teal-900); color:var(--cream);
+    transform: rotateY(180deg);
+  }
+  .committee-card-icon{
+    width:64px; height:64px; border-radius:20px; display:flex; align-items:center; justify-content:center;
+    background:var(--mint-100); margin-bottom:20px; transition: transform 0.3s ease;
+  }
+  .committee-card:hover .committee-card-icon{ transform: scale(1.1); }
+  .committee-card-front h3{ font-size:1.3rem; color:var(--teal-900); margin-bottom:8px; }
+  .committee-card-front .tag{
+    display:inline-block; font-size:.75rem; font-weight:700; color:var(--teal-900);
+    background:var(--mint-100); padding:5px 12px; border-radius:100px;
+  }
+  .committee-card-back p{ color:var(--mint-300); font-size:.95rem; line-height:1.8; margin-bottom:16px; }
+  .committee-card-back .sub-teams{ display:flex; flex-wrap:wrap; gap:8px; justify-content:center; }
+  .committee-card-back .sub-teams span{
+    font-size:.78rem; font-weight:600; color:var(--teal-900);
+    background:var(--mint-100); padding:5px 12px; border-radius:100px;
+  }
+  .committee-card:hover, .committee-card:focus-within{
+    position:relative;
+    z-index:3;
+    transform:translate(8px, -16px) scale(1.05);
+    border-color:var(--teal-600);
+    box-shadow:0 30px 55px -16px rgba(60,121,116,.58);
+  }
+
+  /* ---------- WEEKLY CHALLENGE (ثلوثية) ---------- */
+  .thulothiya{
+    background: linear-gradient(160deg, var(--mint-100) 0%, var(--cream) 55%);
+    border-radius:48px; width:min(1180px,94%); margin-inline:auto;
+    position:relative; overflow:hidden;
+  }
+  .thulothiya-top{
+    display:flex; justify-content:space-between; align-items:flex-end; gap:30px; flex-wrap:wrap;
+    margin-bottom:52px;
+  }
+  .day-badge{
+    display:flex; align-items:center; gap:16px; background:var(--paper);
+    padding:14px 22px; border-radius:100px; box-shadow:var(--shadow);
+  }
+  .day-badge .day-circle{
+    width:52px; height:52px; border-radius:50%; background:var(--teal-900); color:var(--cream);
+    display:flex; align-items:center; justify-content:center; font-family:var(--font-display) !important; font-weight:400; font-size:1.05rem;
+    flex:0 0 auto;
+  }
+  .day-badge div p{ font-size:.78rem; color:var(--ink-soft); }
+  .day-badge div b{ font-family:var(--font-display) !important; color:var(--teal-900); font-size:.98rem; }
+
+  .challenge-grid{ display:grid; grid-template-columns:minmax(0,760px); justify-content:center; gap:24px; }
+  .challenge-card{
+    background:var(--paper); border-radius:var(--radius-md); padding:30px 26px;
+    box-shadow:var(--shadow); position:relative;
+    transition:transform .4s;
+  }
+  .challenge-card:hover{ transform:translateY(-10px) rotate(-1.2deg); box-shadow:0 26px 50px -18px rgba(60,121,116,.4); }
+  .challenge-card:hover .challenge-emoji{ animation: wiggle .6s ease-in-out; }
+  .challenge-card .challenge-emoji{
+    width:56px; height:56px; border-radius:16px; display:flex; align-items:center; justify-content:center;
+    font-size:1.7rem; margin-bottom:18px;
+    background:var(--mint-100);
+  }
+  .challenge-card .week-no{
+    font-family:var(--font-display) !important; font-weight:400; color:var(--teal-900); font-size:.78rem; letter-spacing:1px;
+    margin-bottom:8px; display:block;
+  }
+  .challenge-card h3{ font-size:1.08rem; margin-bottom:10px; }
+  .challenge-card p{ color:var(--ink-soft); font-size:.9rem; line-height:1.85; }
+  .challenge-card .challenge-intro{ font-size:1rem; line-height:2; }
+  .challenge-details{ display:none; margin-top:14px; }
+  .challenge-details.is-open{ display:block; }
+  .challenge-details p{ margin-bottom:16px; }
+  .challenge-details h4{ color:var(--teal-900); font-size:1rem; margin:22px 0 8px; }
+  .read-more{ display:inline-flex; align-items:center; gap:8px; margin-top:20px; padding:10px 18px; border:1px solid var(--teal-900); border-radius:100px; background:transparent; color:var(--teal-900); font-family:var(--font-444) !important; font-size:.88rem; font-weight:700; cursor:pointer; }
+  .read-more:hover{ background:var(--teal-900); color:var(--cream); }
+  .challenge-card .challenge-foot{
+    display:inline-block; margin-top:16px; font-size:.78rem; font-weight:700; color:var(--teal-700);
+    background:var(--mint-100); padding:5px 12px; border-radius:100px;
+  }
+
+  .thulothiya-cta{
+    margin-top:54px; display:flex; align-items:center; justify-content:space-between;
+    background:var(--teal-900); border-radius:28px; padding:34px 42px; color:var(--cream);
+    flex-wrap:wrap; gap:20px;
+  }
+  .thulothiya-cta h3{ color:var(--cream); font-size:1.3rem; }
+  .thulothiya-cta p{ color:var(--mint-300); font-size:.92rem; margin-top:6px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{ padding:90px 0 40px; position:relative; }
+  .footer-top{
+    display:flex; justify-content:space-between; gap:50px; flex-wrap:wrap; padding-bottom:50px;
+    border-bottom:1px solid rgba(60,121,116,.12);
+  }
+  .footer-brand p{ color:var(--ink-soft); max-width:600px; margin:20px auto 0; line-height:2.4; font-size:1.05rem; text-align:center; padding:0 20px;}
+  .footer-cols{ display:flex; gap:70px; flex-wrap:wrap; }
+  .footer-col h4{ font-family:var(--font-display) !important; color:var(--teal-900); margin-bottom:16px; font-size:.95rem;}
+  .footer-col a, .footer-col span{ display:block; color:var(--ink-soft); font-size:.9rem; margin-bottom:10px; transition:color .25s;}
+  .footer-col a:hover{ color:var(--teal-600); }
+  .footer-col a svg{ transition: transform 0.3s ease; display:inline-block; }
+  .footer-col a:hover svg{ transform: translateX(3px); }
+  .footer-bottom{
+    display:flex; justify-content:center; padding-top:26px; color:var(--ink-soft); font-size:.82rem; flex-wrap:wrap; gap:10px;
+  }
+
+  /* ---------- reveal on scroll ---------- */
+  .reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease; }
+  .reveal.in{ opacity:1; transform:translateY(0); }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 980px){
+    nav.links{ display:none; }
+    .about-grid{ grid-template-columns:1fr; }
+    .vvg-grid{ grid-template-columns:1fr; }
+    .achieve-grid{ grid-template-columns:repeat(2,1fr); }
+    .committees-grid{ grid-template-columns:repeat(2,1fr); }
+    .challenge-grid{ grid-template-columns:1fr; }
+    section{ padding:70px 0; }
+  }
+  @media (max-width: 600px){
+    .nav{ padding:12px 0; gap:10px; }
+    .brand{ gap:8px; min-width:0; }
+    .brand .logo-box{ width:40px; height:40px; border-radius:12px; flex:0 0 auto; }
+    .brand-name{ font-size:.86rem; line-height:1.25; }
+    .brand-name span{ font-size:.58rem; white-space:nowrap; letter-spacing:0; }
+    .nav-cta{ flex:0 0 auto; }
+    .nav-cta .btn{ padding:10px 14px; font-size:.78rem; white-space:nowrap; }
+    .hero{ padding:58px 0 70px; }
+    .hero .wrap{ gap:20px; width:92%; }
+    .hero-mark{ width:145px; height:145px; margin-bottom:2px; }
+    .hero h1{ font-size:clamp(2rem, 10vw, 2.8rem); line-height:1.3; max-width:100%; }
+    .hero p.lead{ max-width:100%; font-size:1rem; line-height:1.9; }
+    .hero-actions{ width:100%; gap:10px; }
+    .hero-actions .btn{ flex:1 1 145px; justify-content:center; padding:13px 16px; font-size:.88rem; }
+    .achieve-grid{ grid-template-columns:1fr; }
+    .committees-grid{ grid-template-columns:1fr; }
+    .thulothiya-cta{ flex-direction:column; align-items:flex-start; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .pinwheel.spin, .blob{ animation:none; }
+    .reveal{ transition:none; opacity:1; transform:none; }
+    .lead-word{ opacity:1; transform:none; animation:none !important; }
+  }
+
+  /* ---------- JOIN US ============ */
+  .join-grid{
+    display:grid; grid-template-columns:repeat(2,1fr); gap:30px; max-width:800px; margin:0 auto;
+  }
+  .join-card{
+    background:var(--paper); border-radius:var(--radius-md); padding:40px 32px;
+    border:1px solid rgba(60,121,116,.08); position:relative;
+    transition: transform .4s, box-shadow .4s; text-align:center;
+    display:flex; flex-direction:column; align-items:center; gap:16px;
+    text-decoration:none; color:inherit; box-shadow:var(--shadow);
+  }
+  .join-card:hover{ transform:translateY(-8px); box-shadow:var(--shadow); border-color:var(--teal-600);}
+  .join-icon{
+    width:64px; height:64px; border-radius:20px; display:flex; align-items:center; justify-content:center;
+    background:var(--mint-100); margin-bottom:8px;
+  }
+  .join-card h3{ font-size:1.3rem; margin-bottom:4px; color:var(--teal-900); }
+  .join-card p{ color:var(--ink-soft); font-size:0.95rem; line-height:1.7; }
+  .join-action{
+    display:inline-flex; align-items:center; gap:8px; font-size:0.85rem; font-weight:700;
+    color:var(--teal-900); background:var(--mint-100); padding:8px 20px; border-radius:100px;
+    margin-top:8px; transition:background .3s, color .3s;
+  }
+  .join-card:hover .join-action{ background:var(--teal-600); color:var(--cream); }
+
+  @media (max-width: 600px){
+    .join-grid{ grid-template-columns:1fr; }
+    .committee-card{ height:320px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ BRAND ICON LIBRARY (designed from the club's blade + dot mark) ============ -->
+<svg style="display:none" aria-hidden="true">
+<defs>
+
+  <symbol id="i-rocket" viewBox="0 0 40 40">
+    <path d="M20 30c-3 3-3 6-1 8 1-2 2-3 3-3 1 0 2 1 3 3 2-2 2-5-1-8z" fill="var(--coral)"/>
+    <path d="M20 4c6 4 8 11 6 19-1 3-3 5-6 6-3-1-5-3-6-6-2-8 0-15 6-19z" fill="var(--teal-900)"/>
+    <circle cx="20" cy="16" r="4" fill="var(--mint-400)"/>
+    <path d="M14 20c-4 1-6 4-6 8 4-1 6-3 7-6z" fill="var(--teal-600)"/>
+    <path d="M26 20c4 1 6 4 6 8-4-1-6-3-7-6z" fill="var(--teal-600)"/>
+  </symbol>
+
+  <symbol id="i-bulb" viewBox="0 0 40 40">
+    <path d="M20 4c7 0 12 5 12 12 0 5-3 8-5 10-1 1-2 3-2 5h-10c0-2-1-4-2-5-2-2-5-5-5-10C8 9 13 4 20 4z" fill="var(--mint-300)"/>
+    <circle cx="20" cy="16" r="6" fill="var(--teal-900)"/>
+    <rect x="15" y="32" width="10" height="3" rx="1.5" fill="var(--ink)"/>
+    <rect x="16" y="36" width="8" height="2.4" rx="1.2" fill="var(--ink)"/>
+    <circle cx="24" cy="12" r="2" fill="var(--coral)"/>
+  </symbol>
+
+  <symbol id="i-spark" viewBox="0 0 40 40">
+    <rect x="17" y="3" width="6" height="15" rx="3" fill="var(--teal-900)"/>
+    <rect x="17" y="22" width="6" height="15" rx="3" fill="var(--teal-900)"/>
+    <rect x="3" y="17" width="15" height="6" rx="3" fill="var(--mint-400)"/>
+    <rect x="22" y="17" width="15" height="6" rx="3" fill="var(--mint-400)"/>
+    <circle cx="20" cy="20" r="3.4" fill="var(--coral)"/>
+  </symbol>
+
+  <symbol id="i-bolt" viewBox="0 0 40 40">
+    <path d="M22 3 10 22h8l-2 15 14-21h-9l1-13z" fill="var(--coral)"/>
+  </symbol>
+
+  <symbol id="i-target" viewBox="0 0 40 40">
+    <circle cx="20" cy="20" r="16" fill="var(--mint-100)" stroke="var(--teal-900)" stroke-width="2"/>
+    <circle cx="20" cy="20" r="10" fill="var(--mint-300)"/>
+    <circle cx="20" cy="20" r="4" fill="var(--coral)"/>
+  </symbol>
+
+  <symbol id="i-mic" viewBox="0 0 40 40">
+    <rect x="14" y="4" width="12" height="20" rx="6" fill="var(--teal-900)"/>
+    <path d="M9 18v2c0 6 5 11 11 11s11-5 11-11v-2" fill="none" stroke="var(--teal-600)" stroke-width="2.4" stroke-linecap="round"/>
+    <rect x="19" y="31" width="2.4" height="6" rx="1.2" fill="var(--teal-600)"/>
+    <rect x="14" y="36" width="12" height="2.4" rx="1.2" fill="var(--teal-600)"/>
+    <circle cx="20" cy="10" r="2" fill="var(--mint-400)"/>
+  </symbol>
+
+  <symbol id="i-palette" viewBox="0 0 40 40">
+    <path d="M20 4C10 4 4 11 4 19c0 5 3 8 7 8 2 0 3-1 3-3 0-1-1-2-1-3 0-2 2-3 4-3h6c5 0 9-3 9-8C32 6 27 4 20 4z" fill="var(--mint-100)"/>
+    <circle cx="13" cy="15" r="2.6" fill="var(--coral)"/>
+    <circle cx="20" cy="11" r="2.6" fill="var(--teal-900)"/>
+    <circle cx="27" cy="15" r="2.6" fill="var(--mint-400)"/>
+  </symbol>
+
+  <symbol id="i-flame" viewBox="0 0 40 40">
+    <path d="M20 4c4 6 10 12 10 20 0 7-5 12-10 12S10 31 10 24C10 18 14 14 16 10c1 3 0 5 1 6 1-4 2-8 3-12z" fill="var(--coral)"/>
+    <path d="M20 20c1.5 2 3 4 3 7 0 2.5-1.5 4-3 4s-3-1.5-3-4c0-2 1-3 1.5-4 .5 1 1 1 1.5-1 0-1 0-1.5 0-2z" fill="var(--mint-300)"/>
+  </symbol>
+
+  <symbol id="i-timer" viewBox="0 0 40 40">
+    <rect x="12" y="4" width="16" height="3" rx="1.5" fill="var(--teal-900)"/>
+    <rect x="12" y="33" width="16" height="3" rx="1.5" fill="var(--teal-900)"/>
+    <path d="M14 7c0 6 4 8 6 9-2 1-6 3-6 9h12c0-6-4-8-6-9 2-1 6-3 6-9H14z" fill="var(--mint-300)"/>
+    <circle cx="20" cy="20" r="2.4" fill="var(--coral)"/>
+  </symbol>
+
+  <symbol id="i-trophy" viewBox="0 0 40 40">
+    <path d="M13 6h14v9c0 5-3 9-7 9s-7-4-7-9V6z" fill="var(--teal-900)"/>
+    <path d="M13 8H7c0 5 2 8 6 9" fill="none" stroke="var(--teal-600)" stroke-width="2.2" stroke-linecap="round"/>
+    <path d="M27 8h6c0 5-2 8-6 9" fill="none" stroke="var(--teal-600)" stroke-width="2.2" stroke-linecap="round"/>
+    <rect x="18" y="24" width="4" height="6" fill="var(--teal-900)"/>
+    <rect x="13" y="32" width="14" height="3" rx="1.5" fill="var(--teal-900)"/>
+    <circle cx="20" cy="12" r="2.4" fill="var(--coral)"/>
+  </symbol>
+
+  <symbol id="i-confetti" viewBox="0 0 40 40">
+    <rect x="6" y="8" width="7" height="3" rx="1.5" fill="var(--coral)" transform="rotate(-20 9 9)"/>
+    <rect x="26" y="6" width="7" height="3" rx="1.5" fill="var(--teal-900)" transform="rotate(25 29 7)"/>
+    <circle cx="10" cy="26" r="3" fill="var(--mint-400)"/>
+    <circle cx="30" cy="28" r="2.4" fill="var(--coral)"/>
+    <rect x="17" y="30" width="7" height="3" rx="1.5" fill="var(--teal-600)" transform="rotate(-12 20 31)"/>
+    <circle cx="20" cy="14" r="2.6" fill="var(--mint-300)"/>
+  </symbol>
+
+  <symbol id="i-people" viewBox="0 0 40 40">
+    <circle cx="14" cy="14" r="6" fill="var(--mint-400)"/>
+    <circle cx="26" cy="14" r="6" fill="var(--teal-600)"/>
+    <path d="M4 34c0-6 5-10 10-10s10 4 10 10z" fill="var(--mint-300)"/>
+    <path d="M16 34c0-6 5-10 10-10s10 4 10 10z" fill="var(--teal-900)"/>
+  </symbol>
+
+  <symbol id="i-link" viewBox="0 0 40 40">
+    <rect x="4" y="17" width="20" height="6" rx="3" fill="var(--teal-900)" transform="rotate(45 14 20)"/>
+    <rect x="16" y="17" width="20" height="6" rx="3" fill="var(--mint-400)" transform="rotate(-45 26 20)"/>
+    <circle cx="20" cy="20" r="3.4" fill="var(--coral)"/>
+  </symbol>
+
+  <symbol id="i-clap" viewBox="0 0 40 40">
+    <circle cx="20" cy="20" r="5" fill="var(--coral)"/>
+    <rect x="18.5" y="2" width="3" height="9" rx="1.5" fill="var(--teal-900)"/>
+    <rect x="18.5" y="29" width="3" height="9" rx="1.5" fill="var(--teal-900)"/>
+    <rect x="2" y="18.5" width="9" height="3" rx="1.5" fill="var(--mint-400)"/>
+    <rect x="29" y="18.5" width="9" height="3" rx="1.5" fill="var(--mint-400)"/>
+    <rect x="7" y="7" width="3" height="9" rx="1.5" fill="var(--mint-300)" transform="rotate(45 8.5 11.5)"/>
+    <rect x="30" y="7" width="3" height="9" rx="1.5" fill="var(--mint-300)" transform="rotate(-45 31.5 11.5)"/>
+  </symbol>
+
+  <symbol id="i-location" viewBox="0 0 40 40">
+    <path d="M20 4C12.27 4 6 10.27 6 18c0 9 13 18 13 18s13-9 13-18c0-7.73-6.27-14-14-14zm0 19c-2.76 0-5-2.24-5-5s2.24-5 5-5 5 2.24 5 5-2.24 5-5 5z" fill="var(--teal-600)"/>
+  </symbol>
+
+</defs>
+</svg>
+
+<!-- ============ NAV ============ -->
+<header>
+  <div class="wrap nav">
+    <div class="brand">
+      <div class="logo-box"><img src="logo2.jpg" alt="شعار نادي الابتكار وريادة الأعمال"></div>
+      <div class="brand-name">نــــادي الابــــتكار وريــادة الأعمــال<span>INNOVATION & ENTREPRENEURSHIP CLUB</span></div>
+    </div>
+    <nav class="links">
+      <a href="#about">عن النادي</a>
+      <a href="#vvg">الرؤية والقيم</a>
+      <a href="#achievements">الإنجازات</a>
+      <a href="#committees">اللجان</a>
+      <a href="#thulothiya">ثلوثية النادي</a>
+      <a href="#programs">البرامج</a>
+      <a href="#join-us">انضم الينا</a>
+    </nav>
+    <div class="nav-cta">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfIj-YZsj9RuzTxj2UAWGBcEcrabysOg3HELSe4lpKiUiKmIw/viewform" target="_blank" class="btn btn-primary">انضم للنادي</a>
+    </div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="blob" style="width:280px; height:280px; top:-40px; right:-60px;"></div>
+  <div class="blob" style="width:180px; height:180px; bottom:20px; left:-40px; animation-delay:2s;"></div>
+  <div class="scribble-dash" style="top:120px; left:8%; transform:rotate(35deg); background:var(--mint-400); opacity:.5;"></div>
+  <div class="scribble-dash" style="bottom:60px; right:10%; transform:rotate(-25deg); opacity:.4;"></div>
+
+  <span class="emoji-float" style="top:14%; left:9%; animation-delay:.2s;"><svg width="38" height="38"><use href="#i-rocket"/></svg></span>
+  <span class="emoji-float" style="top:22%; right:8%; animation-delay:1.4s;"><svg width="30" height="30"><use href="#i-bulb"/></svg></span>
+  <span class="emoji-float emoji-spin" style="bottom:26%; left:6%; animation-delay:.8s;"><svg width="32" height="32"><use href="#i-spark"/></svg></span>
+  <span class="emoji-float" style="bottom:16%; right:12%; animation-delay:2.1s;"><svg width="28" height="28"><use href="#i-bolt"/></svg></span>
+  <span class="emoji-float" style="top:48%; left:2%; animation-delay:1.6s;"><svg width="26" height="26"><use href="#i-target"/></svg></span>
+
+  <div class="wrap">
+    <span class="eyebrow reveal"><svg class="icon-inline" width="14" height="14"><use href="#i-spark"/></svg> نبني اليوم أفكار الغد</span>
+
+    <div class="hero-mark reveal">
+      <img src="logo2.jpg" alt="شعار نادي الابتكار وريادة الأعمال">
+    </div>
+
+    <h1 class="reveal">مساحــــة للنــمو ... منصة للإنطلاق <svg class="icon-inline" width="30" height="30" style="vertical-align:-6px;"><use href="#i-rocket"/></svg></h1>
+    <p class="lead reveal">
+      <span class="lead-word" style="--word-delay:0s;">منصة</span> <span class="lead-word" style="--word-delay:.08s;">تُسهم</span> <span class="lead-word" style="--word-delay:.16s;">في</span> <span class="lead-word" style="--word-delay:.24s;">تمكين</span> <span class="lead-word" style="--word-delay:.32s;">الطلبة،</span> <span class="lead-word" style="--word-delay:.4s;">وتنمية</span> <span class="lead-word" style="--word-delay:.48s;">مهاراتهم،</span> <span class="lead-word" style="--word-delay:.56s;">وتحويل</span> <span class="lead-word" style="--word-delay:.64s;">أفكارهم</span> <span class="lead-word" style="--word-delay:.72s;">الابتكارية</span> <span class="lead-word" style="--word-delay:.8s;">إلى</span> <span class="lead-word" style="--word-delay:.88s;">مبادرات</span> <span class="lead-word" style="--word-delay:.96s;">ومشاريع</span> <span class="lead-word" style="--word-delay:1.04s;">ذات</span> <span class="lead-word" style="--word-delay:1.12s;">أثر.</span>
+    </p>
+    <div class="hero-actions reveal">
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLSfIj-YZsj9RuzTxj2UAWGBcEcrabysOg3HELSe4lpKiUiKmIw/viewform" target="_blank" class="btn btn-primary">انضم لعائلة النادي <svg class="icon-inline" width="17" height="17"><use href="#i-clap"/></svg></a>
+      <a href="#about" class="btn btn-ghost">تعرف أكثر ↓</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ABOUT ============ -->
+<section id="about">
+  <div class="wrap about">
+    <div class="wrap" style="width:100%; padding:70px 60px;">
+      <div class="about-grid">
+        <div class="about-art reveal">
+          <img src="logo2.jpg" alt="شعار نادي الابتكار وريادة الأعمال">
+        </div>
+        <div class="about-copy reveal">
+          <span class="eyebrow">من نحن</span>
+          <h2>عن النادي</h2>
+          <p>
+            يهدف نادي الابتكار وريادة الأعمال إلى نشر ثقافة الابتكار وريادة الأعمال داخل الجامعة،
+            وتمكين الطلبة من تحويل أفكارهم إلى مشاريع ومبادرات ذات أثر، وذلك من خلال البرامج
+            التدريبية، وورش العمل، والمسابقات، والفعاليات المختلفة.
+          </p>
+          <p>
+            كما يرحّب النادي بجميع الطلبة ممن لديهم أفكار ابتكارية أو مشاريع أو رغبة في تطوير
+            مهاراتهم، ويوفر لهم بيئة داعمة تساعدهم على تنمية أفكارهم والمشاركة في المسابقات
+            والهاكاثونات والبرامج الريادية.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ VISION / MISSION / GOALS / VALUES ============ -->
+<section id="vvg">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">بوصلتنا</span>
+      <h2>الرؤيــة، الرســالة، الأهداف، والقيــم</h2>
+      <p>الأركان التي تبني عليها كل قرار وكل فعالية في النادي.</p>
+    </div>
+
+    <div class="vvg-grid">
+      <div class="vvg-card reveal">
+        <span class="num">01</span>
+        <div class="icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7-10-7-10-7Z" stroke="#3C7974" stroke-width="1.8"/><circle cx="12" cy="12" r="3" stroke="#3C7974" stroke-width="1.8"/></svg>
+        </div>
+        <h3>الرؤيـــة</h3>
+        <p>أن يصبح نادي الابتكار وريادة الأعمال بجامعة الأمير سطام بن عبدالعزيز منصةً رائدة
+        ومرجعًا وطنيًا في تنمية روح الابتكار وريادة الأعمال لدى الطلبة.</p>
+      </div>
+
+      <div class="vvg-card reveal">
+        <span class="num">02</span>
+        <div class="icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M4 20V10l8-6 8 6v10" stroke="#3C7974" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 20v-6h6v6" stroke="#3C7974" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>الرســالـة</h3>
+        <p>إعداد بيئة جامعية محفزة للإبداع والتحول إلى ريادة الأعمال من خلال توفير برامج
+        تدريبية وتوعوية نوعية، وإتاحة الفرص للطلبة لتحويل أفكارهم إلى مشاريع مبتكرة،
+        وبناء جسور تواصل مع منظومة ريادة الأعمال داخل الجامعة وخارجها.</p>
+      </div>
+
+      <div class="vvg-card reveal">
+        <span class="num">03</span>
+        <div class="icon-wrap">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none"><path d="M3 12h4l3-9 4 18 3-9h4" stroke="#3C7974" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </div>
+        <h3>الأهداف</h3>
+        <ul class="goals-list">
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#6AC0BD"/></svg> تطوير مهارات ريادة الأعمال</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#6AC0BD"/></svg> بناء شبكة طلابية ريادية فاعلة</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#6AC0BD"/></svg> الربط بين الطلبة ورواد الأعمال والخبراء</li>
+          <li><svg width="16" height="16" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" fill="#6AC0BD"/></svg> نشر ثقافة الابتكار وريادة الأعمال</li>
+        </ul>
+      </div>
+
+      <div class="vvg-card reveal">
+        <span class="num">04</span>
+        <div class="icon-wrap">
+          <svg class="brand-icon" width="26" height="26"><use href="#i-spark"/></svg>
+        </div>
+        <h3>القيــم</h3>
+        <div class="values-pills">
+          <span class="pill">الابتكار</span>
+          <span class="pill">التعاون</span>
+          <span class="pill">الاستدامة</span>
+          <span class="pill">التمكين</span>
+          <span class="pill">المبادرة</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ ACHIEVEMENTS ============ -->
+<section id="achievements">
+  <div class="wrap achieve">
+    <div class="wrap" style="width:100%; padding:70px 60px;">
+      <div class="section-head reveal">
+        <span class="eyebrow" style="background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.2); color:var(--mint-300);">مسيرتنا بالأرقام</span>
+        <h2>إنجــازات النــادي</h2>
+        <p>محطات قصيرة من رحلة بنيناها خطوة بخطوة مع أعضاء النادي وشركائه.</p>
+      </div>
+
+      <div class="achieve-grid reveal">
+        <div class="achieve-card"><span style="display:block; margin-bottom:10px;"><svg width="32" height="32"><use href="#i-people"/></svg></span><b class="count-up" data-target="350">0</b><span>عضو منضم للنادي</span></div>
+        <div class="achieve-card"><span style="display:block; margin-bottom:10px;"><svg width="32" height="32"><use href="#i-confetti"/></svg></span><b class="count-up" data-target="20">0</b><span>فعالية وورشة تدريبية</span></div>
+        <div class="achieve-card"><span style="display:block; margin-bottom:10px;"><svg width="32" height="32"><use href="#i-trophy"/></svg></span><b class="count-up" data-target="50000">0</b><span>ريال جوائز</span></div>
+      </div>
+
+      <div class="timeline reveal">
+        <div class="timeline-item">
+          <b>الانطلاقة</b>
+          <p>في مطلع العام الجامعي 1447هـ، دُشّن نادي الابتكار وريادة الأعمال ليكون منصةً لتعزيز ثقافة الابتكار وريادة الأعمال وتمكين الطلبة من تحويل أفكارهم إلى مشاريع ومبادرات مؤثرة.</p>
+        </div>
+        <div class="timeline-item">
+          <b>برنامج التفكير الابتكاري المنظم (SIT)</b>
+          <p>استقطب برنامج التفكير الابتكاري المنظم (SIT) أكثر من 560 مشاركًا، وبلغ مجموع جوائزه أكثر من 30,000 ريال، دعمًا للأفكار المتميزة وتحفيزًا على الابتكار.</p>
+        </div>
+        <div class="timeline-item">
+          <b>إطلاق العديد من البرامج ومعسكرات تدريبية</b>
+          <p>التصميم الهندسي الابتكاري | معسكر الأردوينو | معسكر منجم الأفكار | معسكر PCB</p>
+        </div>
+        <div class="timeline-item">
+          <b>اليوم</b>
+          <p>نادٍ نشط بست لجان عمل، وشبكة شراكات تتوسع كل فصل دراسي.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ COMMITTEES ============ -->
+<section id="committees">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">فريق العمل</span>
+      <h2>اللــجان</h2>
+      <p>يقوم النادي على ست لجان رئيسية، يعمل كل منها بتكامل لتحقيق أهداف النادي وتنفيذ برامجه وأنشطته. <span style="font-size:0.85rem; color:var(--teal-600); display:block; margin-top:8px;">اضغط على البطاقة لمعرفة المزيد</span></p>
+    </div>
+
+    <div class="committees-grid">
+      <div class="committee-card reveal" onclick="flipCommittee(this)">
+        <div class="committee-card-inner">
+          <div class="committee-card-front">
+            <div class="committee-card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M11 5L6 9H2v6h4l5 4V5zM15.54 8.46a5 5 0 0 1 0 7.07l1.41 1.41a7 7 0 0 0 0-9.9l-1.41 1.42zM17.66 6.34a9 9 0 0 1 0 11.32l1.41 1.41a11 11 0 0 0 0-15.56l-1.41 1.83z" fill="var(--teal-600)"/></svg>
+            </div>
+            <span class="tag">الإعلام</span>
+            <h3>لجنة الإعلام</h3>
+          </div>
+          <div class="committee-card-back">
+            <p>تتولى إبراز هوية النادي إعلاميًا وتغطية جميع فعالياته.</p>
+            <div class="sub-teams">
+              <span>فريق التصوير</span>
+              <span>فريق التصميم</span>
+              <span>فريق التسويق</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="committee-card reveal" onclick="flipCommittee(this)">
+        <div class="committee-card-inner">
+          <div class="committee-card-front">
+            <div class="committee-card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20a2 2 0 0 0 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V10h14v10zm0-12H5V6h14v2zm-7 5h5v5h-5v-5z" fill="var(--teal-600)"/></svg>
+            </div>
+            <span class="tag">البرامج</span>
+            <h3>لجنة البرامج</h3>
+          </div>
+          <div class="committee-card-back">
+            <p>تتولى التخطيط والتنظيم والإشراف على تنفيذ برامج النادي وورش العمل والفعاليات والمبادرات المختلفة، بما يحقق أهداف النادي ويثري تجربة الأعضاء.</p>
+          </div>
+        </div>
+      </div>
+      <div class="committee-card reveal" onclick="flipCommittee(this)">
+        <div class="committee-card-inner">
+          <div class="committee-card-front">
+            <div class="committee-card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z" fill="var(--teal-600)"/></svg>
+            </div>
+            <span class="tag">الموارد</span>
+            <h3>لجنة الموارد</h3>
+          </div>
+          <div class="committee-card-back">
+            <p>تعنى بتنظيم شؤون الأعضاء وتعزيز العلاقات داخل النادي وخارجه.</p>
+            <div class="sub-teams">
+              <span>فريق العلاقات العامة</span>
+              <span>فريق الموارد البشرية</span>
+              <span>فريق المالية</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="committee-card reveal" onclick="flipCommittee(this)">
+        <div class="committee-card-inner">
+          <div class="committee-card-front">
+            <div class="committee-card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z" fill="var(--teal-600)"/></svg>
+            </div>
+            <span class="tag">التقنية</span>
+            <h3>اللجنة التقنية</h3>
+          </div>
+          <div class="committee-card-back">
+            <p>تتولى تطوير الحلول التقنية وإدارة الأنظمة الرقمية للنادي، والإشراف على المشاريع التقنية التي تدعم أعماله وتُسهم في تحقيق أهدافه.</p>
+          </div>
+        </div>
+      </div>
+      <div class="committee-card reveal" onclick="flipCommittee(this)">
+        <div class="committee-card-inner">
+          <div class="committee-card-front">
+            <div class="committee-card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z" fill="var(--teal-600)"/></svg>
+            </div>
+            <span class="tag">Fab Lab</span>
+            <h3>لجنة الـ Fab Lab</h3>
+          </div>
+          <div class="committee-card-back">
+            <p>تعنى بتوفير بيئة ابتكارية تُمكّن الأعضاء من تصميم وتطوير النماذج الأولية والمشاريع التقنية، وتدعم التعلم العملي والإبداع باستخدام تقنيات التصنيع الرقمي.</p>
+          </div>
+        </div>
+      </div>
+      <div class="committee-card reveal" onclick="flipCommittee(this)">
+        <div class="committee-card-inner">
+          <div class="committee-card-front">
+            <div class="committee-card-icon">
+              <svg width="32" height="32" viewBox="0 0 24 24" fill="none"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" fill="var(--teal-600)"/></svg>
+            </div>
+            <span class="tag">التنفيذية</span>
+            <h3>اللجنة التنفيذية</h3>
+          </div>
+          <div class="committee-card-back">
+            <p>تشرف اللجنة على تنفيذ أعمال النادي وتقييم الأداء، وتقوم بالتنسيق بين اللجان وتتابع سير المهام بما يساهم في تحقيق أهداف النادي بكفاءة.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ WEEKLY CHALLENGE ============ -->
+<section id="thulothiya">
+  <div class="wrap thulothiya">
+    <span class="emoji-float" style="top:6%; left:4%; animation-delay:.5s;"><svg width="30" height="30"><use href="#i-confetti"/></svg></span>
+    <span class="emoji-float" style="bottom:8%; right:5%; animation-delay:1.7s;"><svg width="30" height="30"><use href="#i-trophy"/></svg></span>
+    <div class="wrap" style="width:100%; padding:70px 60px;">
+
+      <div class="thulothiya-top">
+        <div class="section-head reveal" style="margin-bottom:0;">
+          <span class="eyebrow"><svg class="icon-inline" width="14" height="14"><use href="#i-bolt"/></svg> موعد أسبوعي</span>
+          <h2>ثــلوثيــة النادي Case Study <svg class="icon-inline" width="26" height="26" style="vertical-align:-5px;"><use href="#i-confetti"/></svg></h2>
+          <p>تحدي أسبوعي يستعرض حالات واقعية لشركات واجهت الفشل، ويدعو المشاركين لتحليل أسبابها وطرح حلول وأفكار مبتكرة.</p>
+        </div>
+        <div class="day-badge reveal">
+          <div class="day-circle">ث</div>
+          <div>
+            <p><svg class="icon-inline" width="14" height="14"><use href="#i-flame"/></svg> الموعد القادم</p>
+            <b>الثلاثاء، 12:00 مساءً</b>
+          </div>
+        </div>
+      </div>
+
+      <div class="challenge-grid">
+        <div class="challenge-card reveal">
+          <span class="challenge-emoji" style="background:var(--mint-100);"><svg width="30" height="30"><use href="#i-bulb"/></svg></span>
+          <span class="week-no">دراسة حالة هذا الأسبوع <svg class="icon-inline" width="14" height="14"><use href="#i-flame"/></svg></span>
+          <h3>شركة الفعاليات الرقمية</h3>
+          <p class="challenge-intro">شركة ناشئة دخلت سوق الفعاليات بنموذج عمل يعتمد على بيع التذاكر الرقمية عبر تطبيقها، مع نظام لمتابعة الحضور وإدارة الدخول لحظيًا.</p>
+          <div class="challenge-details" id="digital-events-details">
+            <p>جمعت الشركة تمويلًا كبيرًا وتوسعت بسرعة في الحفلات والمباريات والمؤتمرات، بهدف الاستحواذ على أكبر عدد من الفعاليات قبل المنافسين. مع التوسع، بدأت تظهر مشاكل في الفعاليات الكبيرة؛ التطبيق لا يفتح أحيانًا، والـQR Code لا يعمل، وبعض التذاكر تتأخر في الظهور.</p>
+            <p>اعتبرت الشركة ذلك أعطالًا تقنية طبيعية واستمرت في التوسع. حتى جاءت فعالية كبرى وصل فيها عشرات الآلاف خلال فترة قصيرة، فتوقف نظام التحقق لمدة 20 دقيقة، مما تسبب في طوابير وشكاوى وتعويضات مالية.</p>
+            <p>بعد التحقيق، اكتشفت الإدارة أن السيرفرات لم تكن المشكلة؛ النظام يتحمل العدد الإجمالي للمستخدمين، لكنه لم يكن مصممًا للتعامل مع وصول أعداد ضخمة في نفس المكان وفي نفس الوقت.</p>
+            <h4>أسئلة الطالب</h4>
+            <p>وش الأسباب اللي تشوفها وراء المشكلة؟ ولو كنت مسؤول قبل التوسع الكبير، وش أول قرار كنت تغيّره؟</p>
+            <p>تخيل نفسك دخلت الشركة وسط الأزمة، وش الخطوات اللي بتسويها عشان تحاول تنقذ الشركة وتضمن نجاح الفعاليات القادمة؟</p>
+          </div>
+          <button class="read-more" type="button" aria-expanded="false" aria-controls="digital-events-details">اقرأ المزيد <svg class="icon-inline" width="14" height="14"><use href="#i-link"/></svg></button>
+        </div>
+      </div>
+
+      <div class="thulothiya-cta reveal">
+        <div>
+          <h3>عنــدك حــل لتحــدي هذا الأسبــوع؟</h3>
+          <p>شارك معنا وسجل حضورك عبر الرابط</p>
+        </div>
+        <a href="https://luma.com/n865f12c" class="btn" style="background:var(--teal-600); color:var(--cream); animation:pulse-ring 2.4s ease-out infinite;">سجل حضورك <svg class="icon-inline" width="17" height="17"><use href="#i-clap"/></svg></a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROGRAMS ============ -->
+<section id="programs">
+  <div class="wrap achieve">
+    <div class="wrap" style="width:100%; padding:70px 60px;">
+      <div class="section-head reveal">
+        <span class="eyebrow" style="background:rgba(255,255,255,.1); border-color:rgba(255,255,255,.2); color:var(--mint-300);">المحطة القادمة</span>
+        <h2>البرامــــج <svg class="icon-inline" width="26" height="26" style="vertical-align:-5px;"><use href="#i-rocket"/></svg></h2>
+        <p>كن جزءا من المحطة القادمة</p>
+      </div>
+
+      <div class="timeline reveal">
+        <div class="timeline-item">
+          <b>برنامج كشافة الابتكار</b>
+          <p>ينطلق البرنامج في الأسبوع السادس من الفصل الأول سجل الآن</p>
+          <a href="#" class="btn" style="background:var(--mint-300); color:var(--teal-900); margin-top:8px; font-size:0.85rem; padding:8px 16px; border-radius:100px;">سجل معنا <svg class="icon-inline" width="12" height="12"><use href="#i-clap"/></svg></a>
+        </div>
+        <div class="timeline-item">
+          <b>هاكاثون فنتشرثون</b>
+          <p>ينطلق الهاكاثون في الأسبوع الثاني من الفصل الثاني</p>
+          <span style="display:inline-block; background:rgba(255,139,92,.2); color:var(--coral); padding:8px 16px; border-radius:100px; font-size:0.85rem; margin-top:8px;"><svg class="icon-inline" width="12" height="12"><use href="#i-timer"/></svg> التسجيل مغلق</span>
+        </div>
+        <div class="timeline-item">
+          <b>المعرض الختامي</b>
+          <p>ينطلق في الأسبوع الثامن عشر في الفصل الثاني</p>
+          <a href="#" class="btn" style="background:var(--mint-300); color:var(--teal-900); margin-top:8px; font-size:0.85rem; padding:8px 16px; border-radius:100px;">سجل معنا <svg class="icon-inline" width="12" height="12"><use href="#i-clap"/></svg></a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ JOIN US ============ -->
+<section id="join-us">
+  <div class="wrap">
+    <div class="section-head reveal center">
+      <h2>انضــم الينــا</h2>
+      <p>عبر القنوات الآتية</p>
+    </div>
+
+    <div class="join-grid reveal">
+      <a href="https://chat.whatsapp.com/J9umbHRNhtzFvENoInMke7?s=cl&p=i&mlu=4" class="join-card" target="_blank">
+        <div class="join-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" fill="var(--teal-600)"/>
+          </svg>
+        </div>
+        <h3>واتساب</h3>
+        <p>انضم الينا عبر قناة الواتساب</p>
+        <span class="join-action">انضم الينا <svg class="icon-inline" width="14" height="14"><use href="#i-clap"/></svg></span>
+      </a>
+
+      <a href="https://t.me/IEC_PSAU" class="join-card" target="_blank">
+        <div class="join-icon">
+          <svg width="40" height="40" viewBox="0 0 24 24" fill="none">
+            <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.052-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z" fill="var(--teal-600)"/>
+          </svg>
+        </div>
+        <h3>تليجرام</h3>
+        <p>انضم الينا عبر قناة التليجرام</p>
+        <span class="join-action">انضم الينا <svg class="icon-inline" width="14" height="14"><use href="#i-clap"/></svg></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="footer">
+  <div class="wrap">
+    <div class="footer-top">
+      <div class="footer-brand reveal">
+        <div class="brand">
+          <div class="logo-box"><img src="logo2.jpg" alt="شعار نادي الابتكار وريادة الأعمال"></div>
+          <div class="brand-name">نــــادي الابــــتكار وريــادة الأعمــال<span>INNOVATION & ENTREPRENEURSHIP CLUB</span></div>
+        </div>
+        <p>في كل فكرةٍ بذرة،<br>وفي كل طالبٍ قدرة،<br>وفي كل خطوةٍ فرصة لصناعة أثر.</p>
+      </div>
+      <div class="footer-cols reveal">
+        <div class="footer-col">
+          <h4>الموقع</h4>
+          <a href="#about">عــن النــادي</a>
+          <a href="#vvg">الــرؤيــة والقيــم</a>
+          <a href="#achievements">الإنــجــازات</a>
+          <a href="#committees">الــلــجان</a>
+          <a href="#thulothiya">ثــلوثية النادي</a>
+          <a href="#programs">الــبرامــج</a>
+          <a href="#join-us">انــضــم الينــا</a>
+        </div>
+        <div class="footer-col">
+          <h4>تواصل معنا</h4>
+          <span>iec.psau@gmail.com</span>
+          <span>مقر النادي، جامعة الأمير سطام مبنى كلية الهندسة، الدور الاول</span>
+          <a href="https://maps.app.goo.gl/TYN4uTMrFQ9RJYjF8?g_st=ic" target="_blank" style="display:inline-flex; align-items:center; gap:8px; font-size:.9rem; color:var(--ink-soft); transition:color .25s;">موقع المقر <svg class="icon-inline" width="14" height="14"><use href="#i-location"/></svg></a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 نادي الابتكار وريادة الأعمال. جميع الحقوق محفوظة.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // scroll reveal
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, {threshold:.15});
+  document.querySelectorAll('.reveal').forEach(el=> io.observe(el));
+
+  // count-up animation for achievement numbers
+  const counters = document.querySelectorAll('.count-up');
+  const countIo = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = parseInt(el.dataset.target, 10);
+      const duration = 1400;
+      const start = performance.now();
+      function tick(now){
+        const p = Math.min((now - start) / duration, 1);
+        const eased = 1 - Math.pow(1 - p, 3);
+        el.textContent = '+' + Math.round(eased * target);
+        if(p < 1) requestAnimationFrame(tick);
+      }
+      requestAnimationFrame(tick);
+      countIo.unobserve(el);
+    });
+  }, {threshold:.4});
+  counters.forEach(el=> countIo.observe(el));
+
+  // subtle parallax for hero blobs on mouse move
+  const blobs = document.querySelectorAll('.hero .blob');
+  document.querySelector('.hero').addEventListener('mousemove', (e)=>{
+    const {innerWidth:w, innerHeight:h} = window;
+    const x = (e.clientX / w - .5) * 20;
+    const y = (e.clientY / h - .5) * 20;
+    blobs.forEach((b,i)=>{
+      b.style.transform = `translate(${x * (i+1)}px, ${y * (i+1)}px)`;
+    });
+  });
+
+    document.querySelectorAll('.read-more').forEach(button=>{
+      button.addEventListener('click', ()=>{
+        const details = document.getElementById(button.getAttribute('aria-controls'));
+        const isOpen = details.classList.toggle('is-open');
+        button.setAttribute('aria-expanded', String(isOpen));
+        button.firstChild.textContent = isOpen ? 'إخفاء التفاصيل ' : 'اقرأ المزيد ';
+      });
+    });
+
+  function flipCommittee(selectedCard){
+    const wasFlipped = selectedCard.classList.contains('flipped');
+    document.querySelectorAll('.committee-card.flipped').forEach(card=>{
+      card.classList.remove('flipped');
+    });
+    if(!wasFlipped) selectedCard.classList.add('flipped');
+  }
+
+  // committee card flip effect is handled by flipCommittee
+</script>
+</body>
+</html>
